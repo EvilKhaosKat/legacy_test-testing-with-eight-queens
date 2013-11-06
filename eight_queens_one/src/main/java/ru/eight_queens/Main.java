@@ -34,6 +34,8 @@ public class Main {
             System.out.println(field);
             System.out.println("Calculation ended");
             return true;
+            //TODO to improve algorithm, to find all variants we must not stop at low level when find solve of the problem
+            //somehow remember that combination of figures, and return FALSE, that force system to recombine other variants
         }
 
         FigureSetter figureSetter = new FigureSetter();
