@@ -18,7 +18,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Field field = new Field();
-        recursiveFinding(field, 8, null);
+//        field.getCell(0,0).setRestrictedForUsing(true);
+        recursiveFinding(field, 7, null);
 //        FigureSetter figureSetter = new FigureSetter();
 //        figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
 //        figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
