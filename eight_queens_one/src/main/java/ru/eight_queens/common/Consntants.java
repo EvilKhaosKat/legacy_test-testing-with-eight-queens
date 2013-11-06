@@ -7,7 +7,7 @@ package ru.eight_queens.common;
  * Time: 13:07
  * To change this template use File | Settings | File Templates.
  */
-public class Constants {
+public class Consntants {
     public static int DEFAULT_ROWS_COUNT = 8;
     public static int DEFAULT_COLUMNS_COUNT = 8;
 

@@ -1,6 +1,6 @@
 package ru.eight_queens.logic.position_choose.factories;
 
-import static ru.eight_queens.common.Constants.*;
+import static ru.eight_queens.common.Consntants.*;
 import ru.eight_queens.logic.position_choose.choosers.PositionChooser;
 import ru.eight_queens.logic.position_choose.choosers.SerialPositionChooser;
 

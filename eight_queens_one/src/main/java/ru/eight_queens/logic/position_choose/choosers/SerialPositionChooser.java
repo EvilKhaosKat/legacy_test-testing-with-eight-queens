@@ -22,7 +22,7 @@ public class SerialPositionChooser implements PositionChooser {
             int rowsCount = field.getRowsCount();
             int columnsCount = field.getColumnsCount();
 
-            for (int row = 0; row< rowsCount; row++)
+            for (int row = 0; row < rowsCount; row++)
             {
                 for (int column = 0; column < columnsCount; column++)
                 {

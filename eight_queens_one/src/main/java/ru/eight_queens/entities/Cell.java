@@ -59,4 +59,8 @@ public class Cell {
     {
         return (!attacked && !restrictedForUsing && (figure == null));
     }
+
+    public Field getField() {
+        return field;
+    }
 }

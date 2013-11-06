@@ -1,6 +1,6 @@
 package ru.eight_queens.entities;
 
-import ru.eight_queens.common.Constants;
+import ru.eight_queens.common.Consntants;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +16,7 @@ public class Field {
 
     public Field()
     {
-        this(Constants.DEFAULT_ROWS_COUNT, Constants.DEFAULT_COLUMNS_COUNT);
+        this(Consntants.DEFAULT_ROWS_COUNT, Consntants.DEFAULT_COLUMNS_COUNT);
     }
 
     public Field(int rowsCount, int columnsCount)
@@ -52,5 +52,51 @@ public class Field {
 
     public int getColumnsCount() {
         return columnsCount;
+    }
+
+    public void calculateAttackedCells()
+    {
+        for (int row = 0; row < rowsCount; row++)
+        {
+            for (int column = 0; column < columnsCount; column++)
+            {
+                Cell cell = field[row][column];
+                if (cell.getFigure() != null)
+                {
+
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder result = new StringBuilder();
+
+        for (int row = 0; row < rowsCount; row++)
+        {
+            for (int column = 0; column < columnsCount; column++)
+            {
+                Cell cell = field[row][column];
+                if (cell.getFigure() != null)
+                {
+                    result.append("Q");
+                }
+                else if (cell.isAttacked())
+                {
+                    result.append("*");
+                }
+                else
+                {
+                    result.append(" ");
+                }
+
+            }
+            result.append("|");
+        }
+
+        return result.toString();
     }
 }

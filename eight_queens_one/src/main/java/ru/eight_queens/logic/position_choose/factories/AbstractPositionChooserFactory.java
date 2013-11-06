@@ -1,6 +1,6 @@
 package ru.eight_queens.logic.position_choose.factories;
 
-import ru.eight_queens.common.Constants;
+import ru.eight_queens.common.Consntants;
 import ru.eight_queens.logic.position_choose.choosers.PositionChooser;
 
 /**
@@ -11,7 +11,7 @@ import ru.eight_queens.logic.position_choose.choosers.PositionChooser;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class AbstractPositionChooserFactory {
-    public abstract PositionChooser createPositionChooser(Constants.FigureTypes figureType);
-    public abstract PositionChooser createPositionChooser(Constants.FigureTypes figureType,
-                                                          Constants.PositionChooserType positionChooserType);
+    public abstract PositionChooser createPositionChooser(Consntants.FigureTypes figureType);
+    public abstract PositionChooser createPositionChooser(Consntants.FigureTypes figureType,
+                                                          Consntants.PositionChooserType positionChooserType);
 }
