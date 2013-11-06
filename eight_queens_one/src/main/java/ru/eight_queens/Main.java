@@ -18,15 +18,20 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Field field = new Field();
-        recursiveFinding(field, 6);
+        recursiveFinding(field, 8, null);
 //        FigureSetter figureSetter = new FigureSetter();
 //        figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
 //        figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
 //        figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
     }
 
-    public static void recursiveFinding(Field field, int countOfQueens) throws Exception {
+    public static void recursiveFinding(Field field, int countOfQueens, Stack<Cell> queensCellsStack) throws Exception {
+        if (queensCellsStack == null)
+        {
+            queensCellsStack = new Stack<Cell>();
+        }
 
+        countOfQueens--;
         if (countOfQueens<1)
         {
             System.out.println("-----FINAL FIELD----");
@@ -38,8 +43,6 @@ public class Main {
         System.out.println("-----FIELD----");
         System.out.println(field);
 
-        Stack<Cell> queensCellsStack = new Stack<Cell>();
-
         FigureSetter figureSetter = new FigureSetter();
         Cell cell = figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
         if (cell != null)
@@ -48,16 +51,23 @@ public class Main {
         }
         else
         {
+            System.out.println("cell is null. countOfQueens = "+countOfQueens);
             if (!queensCellsStack.isEmpty())
             {
                 Cell restrictedCell = queensCellsStack.pop();
                 restrictedCell.setFigure(null);
+                restrictedCell.setAttacked(false);
+                restrictedCell.setRestrictedForUsing(true);
                 field.calculateAttackedCells();
-                recursiveFinding(field, countOfQueens);
+
+                System.out.println("AFTER DELETION OF QUEEN FROM CELL");
+                System.out.println(field);
+
+                countOfQueens++;
+                recursiveFinding(field, countOfQueens, queensCellsStack);
             }
         }
 
-        countOfQueens--;
-        recursiveFinding(field, countOfQueens);
+        recursiveFinding(field, countOfQueens, queensCellsStack);
     }
 }

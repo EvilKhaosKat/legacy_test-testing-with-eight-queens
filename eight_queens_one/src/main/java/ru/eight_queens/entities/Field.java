@@ -21,6 +21,7 @@ public class Field {
         this(Consntants.DEFAULT_ROWS_COUNT, Consntants.DEFAULT_COLUMNS_COUNT);
     }
 
+    //TODO that walking through all cells of field to be generalized, because of it's same part of code in few methods
     public Field(int rowsCount, int columnsCount)
     {
         this.rowsCount = columnsCount;
@@ -57,6 +58,7 @@ public class Field {
     }
 
     public void calculateAttackedCells() throws WrongFigureTypeException {
+        resetAttackedStatus();
         for (int row = 0; row < rowsCount; row++)
         {
             for (int column = 0; column < columnsCount; column++)
@@ -69,6 +71,18 @@ public class Field {
             }
         }
 
+    }
+
+    private void resetAttackedStatus()
+    {
+        for (int row = 0; row < rowsCount; row++)
+        {
+            for (int column = 0; column < columnsCount; column++)
+            {
+                Cell cell = field[row][column];
+                cell.setAttacked(false);
+            }
+        }
     }
 
     public void clean(boolean restrictionReset)
@@ -101,6 +115,10 @@ public class Field {
                 if (cell.getFigure() != null)
                 {
                     result.append("Q");
+                }
+                else if (cell.isRestrictedForUsing())
+                {
+                    result.append("r");
                 }
                 else if (cell.isAttacked())
                 {
