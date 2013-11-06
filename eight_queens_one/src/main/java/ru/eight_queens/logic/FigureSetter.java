@@ -51,6 +51,7 @@ public class FigureSetter {
 
         Figure queen = new Queen(field, cell, Consntants.FigureTypes.QUEEN);
         cell.setFigure(queen);
+        cell.setRestrictedForUsing(true);
         field.calculateAttackedCells();
     }
 }

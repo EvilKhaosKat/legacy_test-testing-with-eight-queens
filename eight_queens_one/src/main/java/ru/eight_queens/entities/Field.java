@@ -71,7 +71,7 @@ public class Field {
 
     }
 
-    public void clean()
+    public void clean(boolean restrictionReset)
     {
         for (int row = 0; row < rowsCount; row++)
         {
@@ -80,6 +80,10 @@ public class Field {
                 Cell cell = field[row][column];
                 cell.setAttacked(false);
                 cell.setFigure(null);
+                if (restrictionReset)
+                {
+                    cell.setRestrictedForUsing(false);
+                }
             }
         }
     }
