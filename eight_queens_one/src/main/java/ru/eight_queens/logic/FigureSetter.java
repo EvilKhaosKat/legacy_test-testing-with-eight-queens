@@ -18,40 +18,38 @@ import ru.eight_queens.logic.position_choose.factories.PositionChooserFactory;
  */
 public class FigureSetter {
 
-    public Cell setFigureOnField(Field field, Consntants.FigureTypes figureType) throws Exception {
-        PositionChooserFactory positionChooserFactory = new PositionChooserFactory();
-        PositionChooser positionChooser = positionChooserFactory.createPositionChooser(figureType);
-        Cell cell = positionChooser.getSuitablePosition(field);
-        if (cell != null)
-        {
-            setFigureOnChosenCell(field, cell, figureType);
-            return cell;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    private void setFigureOnChosenCell(Field field, Cell cell, Consntants.FigureTypes figureType) throws Exception {
+    public Figure setFigureOnField(Field field, Consntants.FigureTypes figureType, Figure figure) throws Exception {
         if (figureType == Consntants.FigureTypes.QUEEN)
         {
-            setQueenOnChosenCell(field, cell);
-            return;
+            Figure queen = figure == null ? new Queen(field, null, Consntants.FigureTypes.QUEEN) : figure;
+            PositionChooserFactory positionChooserFactory = new PositionChooserFactory();
+            PositionChooser positionChooser = positionChooserFactory.createPositionChooser(figureType);
+            Cell cell = positionChooser.getSuitablePosition(field, queen);
+            if (cell != null)
+            {
+                setQueenOnChosenCell(field, cell, queen);
+                return queen;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         throw new WrongFigureTypeException("Figure type "+ figureType + " is not supproted.");
     }
 
-    private void setQueenOnChosenCell(Field field, Cell cell) throws Exception {
+    private void setQueenOnChosenCell(Field field, Cell cell, Figure queen) throws Exception {
         if (cell.getField() != field)
         {
             throw new Exception("Cell not from specified field");
         }
 
-        Figure queen = new Queen(field, cell, Consntants.FigureTypes.QUEEN);
         cell.setFigure(queen);
-        cell.setRestrictedForUsing(true);
+        queen.setCell(cell);
+//        cell.setRestrictedForUsing(true);
+        cell.setAttacked(true);
+        queen.addInUsedCells(cell);
         field.calculateAttackedCells();
     }
 }

@@ -63,4 +63,11 @@ public class Cell {
     public Field getField() {
         return field;
     }
+
+    @Override
+    public String toString()
+    {
+        return "row "+row+" column "+column+ " attacked "+attacked;
+    }
+
 }

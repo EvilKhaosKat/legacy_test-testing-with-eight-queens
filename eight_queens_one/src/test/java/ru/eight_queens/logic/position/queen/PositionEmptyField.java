@@ -6,6 +6,7 @@ import org.junit.Test;
 import ru.eight_queens.common.Consntants;
 import ru.eight_queens.entities.Cell;
 import ru.eight_queens.entities.Field;
+import ru.eight_queens.entities.figures.Queen;
 import ru.eight_queens.logic.position_choose.choosers.PositionChooser;
 import ru.eight_queens.logic.position_choose.factories.PositionChooserFactory;
 
@@ -29,7 +30,7 @@ public class PositionEmptyField extends Assert {
     {
         PositionChooserFactory positionChooserFactory = new PositionChooserFactory();
         PositionChooser positionChooser = positionChooserFactory.createPositionChooser(Consntants.FigureTypes.QUEEN);
-        Cell choosenCell = positionChooser.getSuitablePosition(field);
+        Cell choosenCell = positionChooser.getSuitablePosition(field, new Queen(field, null, Consntants.FigureTypes.QUEEN));
         assertEquals(0, choosenCell.getColumn());
         assertEquals(0, choosenCell.getRow());
     }

@@ -4,6 +4,9 @@ import ru.eight_queens.common.Consntants;
 import ru.eight_queens.entities.Cell;
 import ru.eight_queens.entities.Field;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Fantom
@@ -15,6 +18,7 @@ public abstract class Figure {
     Field field;
     Cell cell;
     Consntants.FigureTypes figureType;
+    Collection<Cell> usedCells;
 
     private Figure() {};
 
@@ -23,6 +27,17 @@ public abstract class Figure {
         this.field = field;
         this.cell = cell;
         this.figureType = figureType;
+        usedCells = new ArrayList<Cell>();
+    }
+
+    public String toString()
+    {
+        return figureType + usedCells.toString();
+    }
+
+    public void addInUsedCells(Cell cell)
+    {
+        usedCells.add(cell);
     }
 
     public Field getField() {
@@ -35,5 +50,17 @@ public abstract class Figure {
 
     public Consntants.FigureTypes getFigureType() {
         return figureType;
+    }
+
+    public Collection<Cell> getUsedCells() {
+        return usedCells;
+    }
+
+    public void setUsedCells(Collection<Cell> usedCells) {
+        this.usedCells = usedCells;
+    }
+
+    public void setCell(Cell cell) {
+        this.cell = cell;
     }
 }

@@ -2,6 +2,7 @@ package ru.eight_queens.logic.position_choose.choosers;
 
 import ru.eight_queens.entities.Cell;
 import ru.eight_queens.entities.Field;
+import ru.eight_queens.entities.figures.Figure;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +17,7 @@ public class SerialPositionChooser implements PositionChooser {
      * @return cell of field that is suitable for using
      */
     @Override
-    public Cell getSuitablePosition(Field field) {
+    public Cell getSuitablePosition(Field field, Figure figure) {
         if (field != null)
         {
             int rowsCount = field.getRowsCount();
@@ -27,7 +28,7 @@ public class SerialPositionChooser implements PositionChooser {
                 for (int column = 0; column < columnsCount; column++)
                 {
                     Cell cell = field.getCell(row, column);
-                    if (cell.canBeUsed())
+                    if (cell.canBeUsed() && !figure.getUsedCells().contains(cell))
                     {
                         return cell;
                     }
