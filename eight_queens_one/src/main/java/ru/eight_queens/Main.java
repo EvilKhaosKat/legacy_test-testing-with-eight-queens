@@ -19,7 +19,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Field field = new Field();
 //        field.getCell(0,0).setRestrictedForUsing(true);
-        recursiveFinding(field, 7, null);
+        recursiveFinding(field, 8, null);
 //        FigureSetter figureSetter = new FigureSetter();
 //        figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
 //        figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
@@ -32,7 +32,6 @@ public class Main {
             queensCellsStack = new Stack<Cell>();
         }
 
-        countOfQueens--;
         if (countOfQueens<1)
         {
             System.out.println("-----FINAL FIELD----");
@@ -40,9 +39,6 @@ public class Main {
             System.out.println("Calculation ended");
             return;
         }
-
-        System.out.println("-----FIELD----");
-        System.out.println(field);
 
         FigureSetter figureSetter = new FigureSetter();
         Cell cell = figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
@@ -52,7 +48,7 @@ public class Main {
         }
         else
         {
-            System.out.println("cell is null. countOfQueens = "+countOfQueens);
+            System.out.println("cell is null");
             if (!queensCellsStack.isEmpty())
             {
                 Cell restrictedCell = queensCellsStack.pop();
@@ -66,9 +62,22 @@ public class Main {
 
                 countOfQueens++;
                 recursiveFinding(field, countOfQueens, queensCellsStack);
+                return;
+            }
+            else
+            {
+                System.out.println("Not possible to fill this field.");
+                return;
             }
         }
 
+        System.out.println("-----FIELD----");
+        System.out.println(field);
+
+        System.out.println("countOfQueens = "+countOfQueens);
+
+        countOfQueens--;
         recursiveFinding(field, countOfQueens, queensCellsStack);
+
     }
 }
