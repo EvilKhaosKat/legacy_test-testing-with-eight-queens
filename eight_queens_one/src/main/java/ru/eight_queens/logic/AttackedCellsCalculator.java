@@ -40,8 +40,62 @@ public class AttackedCellsCalculator {
 
         setAttackedRow(field, row);
         setAttackedColumn(field, column);
+        setAttackedDiagonals(field, cell);
 
         return attackedCells;
+    }
+
+    //TODO rewrite realization of method, this variant is not optimal
+    private static void setAttackedDiagonals(Field field, Cell cell) {
+        int queenRow = cell.getRow();
+        int queenColumn = cell.getColumn();
+
+        setUpperLeftDiagonal(field, queenRow, queenColumn);
+        setUpperRightDiagonal(field, queenRow, queenColumn);
+        setDownLeftDiagonal(field, queenRow, queenColumn);
+        setDownRightDiagonal(field, queenRow, queenColumn);
+    }
+
+    private static void setDownRightDiagonal(Field field, int queenRow, int queenColumn)
+    {
+        int column = queenColumn;
+        for (int row = queenRow; row < field.getRowsCount(); row++)
+        {
+            field.getCell(row, column).setAttacked(true);
+            column++;
+            if (column >= field.getColumnsCount()) return;
+        }
+    }
+
+    private static void setDownLeftDiagonal(Field field, int queenRow, int queenColumn)
+    {
+        int column = queenColumn;
+        for (int row = queenRow; row < field.getRowsCount(); row++)
+        {
+            field.getCell(row, column).setAttacked(true);
+            column--;
+            if (column < 0) return;
+        }
+    }
+
+    private static void setUpperRightDiagonal(Field field, int queenRow, int queenColumn) {
+        int column = queenColumn;
+        for (int row = queenRow; row > 0; row--)
+        {
+            field.getCell(row, column).setAttacked(true);
+            column++;
+            if (column >= field.getColumnsCount()) return;
+        }
+    }
+
+    private static void setUpperLeftDiagonal(Field field, int queenRow, int queenColumn) {
+        int column = queenColumn;
+        for (int row = queenRow; row > 0; row--)
+        {
+            field.getCell(row, column).setAttacked(true);
+            column--;
+            if (column < 0) return;
+        }
     }
 
     private static void setAttackedRow(Field field, int row) {
