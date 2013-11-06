@@ -12,4 +12,6 @@ public class Constants {
     public static int DEFAULT_COLUMNS_COUNT = 8;
 
     public static enum FigureTypes {QUEEN};
+
+    public static enum PositionChooserType {SERIAL, RANDOM};
 }

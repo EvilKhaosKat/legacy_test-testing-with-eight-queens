@@ -14,6 +14,7 @@ public class Cell {
     Field field;
     Figure figure = null;
     boolean attacked = false;
+    boolean restrictedForUsing = false;
 
     public Cell(int row, int column, Field field)
     {
@@ -36,5 +37,26 @@ public class Cell {
 
     public void setFigure(Figure figure) {
         this.figure = figure;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public boolean isRestrictedForUsing() {
+        return restrictedForUsing;
+    }
+
+    public void setRestrictedForUsing(boolean restrictedForUsing) {
+        this.restrictedForUsing = restrictedForUsing;
+    }
+
+    public boolean canBeUsed()
+    {
+        return (!attacked && !restrictedForUsing && (figure == null));
     }
 }

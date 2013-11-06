@@ -11,27 +11,46 @@ import ru.eight_queens.common.Constants;
  */
 public class Field {
     private Cell[][] field;
+    private int rowsCount;
+    private int columnsCount;
 
     public Field()
     {
         this(Constants.DEFAULT_ROWS_COUNT, Constants.DEFAULT_COLUMNS_COUNT);
     }
 
-    public Field(int x, int y)
+    public Field(int rowsCount, int columnsCount)
     {
-        field = new Cell[x][y];
+        this.rowsCount = columnsCount;
+        this.columnsCount = rowsCount;
 
-        for (int i = 0; i < x; i++)
+        field = new Cell[rowsCount][columnsCount];
+
+        for (int i = 0; i < rowsCount; i++)
         {
-            for (int j = 0; j < y; j++)
+            for (int j = 0; j < columnsCount; j++)
             {
-                Cell cell = new Cell(x, y, this);
+                Cell cell = new Cell(rowsCount, columnsCount, this);
                 field[i][j] = cell;
             }
         }
     }
 
+    @Deprecated
     public Cell[][] getField() {
         return field;
+    }
+
+    public Cell getCell(int row, int column)
+    {
+        return field[row][column];
+    }
+
+    public int getRowsCount() {
+        return rowsCount;
+    }
+
+    public int getColumnsCount() {
+        return columnsCount;
     }
 }
