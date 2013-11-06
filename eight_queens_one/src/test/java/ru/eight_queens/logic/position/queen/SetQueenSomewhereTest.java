@@ -28,6 +28,5 @@ public class SetQueenSomewhereTest extends Assert {
     {
         FigureSetter figureSetter = new FigureSetter();
         figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
-        System.out.println();
     }
 }

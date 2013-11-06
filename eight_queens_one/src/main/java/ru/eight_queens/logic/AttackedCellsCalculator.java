@@ -44,15 +44,15 @@ public class AttackedCellsCalculator {
         return attackedCells;
     }
 
-    private static void setAttackedColumn(Field field, int column) {
-        for (int row = 0; row < field.getColumnsCount(); row++)
+    private static void setAttackedRow(Field field, int row) {
+        for (int column = 0; column < field.getColumnsCount(); column++)
         {
             field.getCell(row, column).setAttacked(true);
         }
     }
 
-    private static void setAttackedRow(Field field, int row) {
-        for (int column = 0; column < field.getColumnsCount(); column++)
+    private static void setAttackedColumn(Field field, int column) {
+        for (int row = 0; row < field.getRowsCount(); row++)
         {
             field.getCell(row, column).setAttacked(true);
         }

@@ -18,18 +18,18 @@ import ru.eight_queens.logic.position_choose.factories.PositionChooserFactory;
  */
 public class FigureSetter {
 
-    public boolean setFigureOnField(Field field, Consntants.FigureTypes figureType) throws Exception {
+    public Cell setFigureOnField(Field field, Consntants.FigureTypes figureType) throws Exception {
         PositionChooserFactory positionChooserFactory = new PositionChooserFactory();
         PositionChooser positionChooser = positionChooserFactory.createPositionChooser(figureType);
         Cell cell = positionChooser.getSuitablePosition(field);
         if (cell != null)
         {
             setFigureOnChosenCell(field, cell, figureType);
-            return true;
+            return cell;
         }
         else
         {
-            return false;
+            return null;
         }
     }
 

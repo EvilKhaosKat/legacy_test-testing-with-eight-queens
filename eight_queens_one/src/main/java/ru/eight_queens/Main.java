@@ -14,10 +14,11 @@ import ru.eight_queens.logic.FigureSetter;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-
         Field field = new Field();
 
         FigureSetter figureSetter = new FigureSetter();
+        figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
+        figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
         figureSetter.setFigureOnField(field, Consntants.FigureTypes.QUEEN);
         System.out.println(field.toString());
     }

@@ -1,6 +1,8 @@
 package ru.eight_queens.entities;
 
 import ru.eight_queens.common.Consntants;
+import ru.eight_queens.common.exceptions.WrongFigureTypeException;
+import ru.eight_queens.logic.AttackedCellsCalculator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,12 +28,12 @@ public class Field {
 
         field = new Cell[rowsCount][columnsCount];
 
-        for (int i = 0; i < rowsCount; i++)
+        for (int row = 0; row < rowsCount; row++)
         {
-            for (int j = 0; j < columnsCount; j++)
+            for (int column = 0; column < columnsCount; column++)
             {
-                Cell cell = new Cell(rowsCount, columnsCount, this);
-                field[i][j] = cell;
+                Cell cell = new Cell(row, column, this);
+                field[row][column] = cell;
             }
         }
     }
@@ -54,8 +56,7 @@ public class Field {
         return columnsCount;
     }
 
-    public void calculateAttackedCells()
-    {
+    public void calculateAttackedCells() throws WrongFigureTypeException {
         for (int row = 0; row < rowsCount; row++)
         {
             for (int column = 0; column < columnsCount; column++)
@@ -63,11 +64,24 @@ public class Field {
                 Cell cell = field[row][column];
                 if (cell.getFigure() != null)
                 {
-
+                    AttackedCellsCalculator.calculateAttackedCells(this, cell);
                 }
             }
         }
 
+    }
+
+    public void clean()
+    {
+        for (int row = 0; row < rowsCount; row++)
+        {
+            for (int column = 0; column < columnsCount; column++)
+            {
+                Cell cell = field[row][column];
+                cell.setAttacked(false);
+                cell.setFigure(null);
+            }
+        }
     }
 
     @Override
@@ -94,7 +108,7 @@ public class Field {
                 }
 
             }
-            result.append("|");
+            result.append("|\n");
         }
 
         return result.toString();
