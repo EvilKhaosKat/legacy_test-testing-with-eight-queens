@@ -1,0 +1,1 @@
+Solving of simple chess problem, using TDD (or at least just testing for java (JUnit or TestNG), a bit of overengineering
